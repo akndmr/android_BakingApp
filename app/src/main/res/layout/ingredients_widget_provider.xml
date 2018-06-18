@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/widget_ingredients"
+    android:padding="@dimen/widget_margin">
+
+
+        <TextView
+            android:id="@+id/widget_ingredients_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="top"
+            android:paddingBottom="@dimen/default_padding"
+            android:text="@string/label_ingredients"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/widget_ingredients_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"/>
+
+
+</RelativeLayout>
+

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Baking App</string>
+    <string name="recipe_image_desc">bla bla</string>
+
+
+    <string name="error_message">
+        A network error has occurred. No connection. Please try again.
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appwidget_text">@string/app_name</string>
+
+    <string name="add_widget">Add widget</string>
+
+
+    <string name="label_ingredients">Ingredients</string>
+    <string name="recipe_s_description">Recipe\'s description</string>
+    <string name="step_s_title">Step\'s Title</string>
+    <string name="noOfColumns">3</string>
+    <string name="label_servings">Servings:</string>
+
+
+</resources>

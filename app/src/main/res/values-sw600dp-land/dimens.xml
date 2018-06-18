@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_recipe_height">300dp</dimen>
+    <dimen name="card_recipe_height_half">150dp</dimen>
+    <dimen name="card_recipe_width">400dp</dimen>
+</resources>

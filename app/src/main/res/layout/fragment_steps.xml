@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/recipe_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:descendantFocusability="blocksDescendants"
+            android:paddingTop="@dimen/default_padding">
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/ingredients_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/default_padding_small"
+                card_view:cardBackgroundColor="@color/colorPrimary"
+                card_view:cardCornerRadius="12dp"
+                card_view:cardElevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/default_padding">
+
+                    <TextView
+                        android:id="@+id/ingredients_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:gravity="top"
+                        android:paddingBottom="@dimen/default_padding"
+                        android:text="@string/label_ingredients"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/ingredients_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ingredients_label"
+                        android:textColor="@android:color/white"
+                        tools:text="Ingredients" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/steps_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ingredients_cv"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/default_padding_small"
+                android:paddingTop="@dimen/default_padding" />
+
+
+        </RelativeLayout>
+        <!-- A progress bar that will be shown to users to indicate that movies data are loading -->
+        <TextView
+            android:id="@+id/tv_error_message_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:text="@string/error_message"
+            android:textSize="@dimen/text_size_error_message"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading_indicator"
+            android:layout_width="@dimen/progress_bar_dimension"
+            android:layout_height="@dimen/progress_bar_dimension"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+    </FrameLayout>
+</ScrollView>

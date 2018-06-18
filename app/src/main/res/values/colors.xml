@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f1333f</color>
+    <color name="colorPrimaryDark">#ae283f</color>
+    <color name="colorAccent">#e0e0e0</color>
+    <color name="stepsBackground">#ffc000</color>
+</resources>
