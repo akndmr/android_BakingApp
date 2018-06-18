@@ -112,7 +112,8 @@ public class StepDetailsFragment extends Fragment {
                 mStep = savedInstanceState.getParcelable(BUNDLE_STEP);
             } else {
                 if (intent.hasExtra(Utils.BUNDLE_STEP)) {
-                    mStep = intent.getParcelableExtra("step");
+
+                    mStep = intent.getParcelableExtra(Utils.BUNDLE_STEP);
                 }
             }
 
@@ -124,6 +125,7 @@ public class StepDetailsFragment extends Fragment {
             if (stepNumber.length() > 4) {
                 stepNumber = " ";
             }
+
 
             mStepNumberTV.setText(stepNumber);
             mStepShortDescTV.setText(mStep.getStepShortDesc());

@@ -24,17 +24,19 @@ public class DetailActivity extends AppCompatActivity implements StepsFragment.O
         if (intent != null) {
             if (intent.hasExtra(Utils.BUNDLE_STEPS)) {
                 mSteps = intent.getParcelableArrayListExtra(Utils.BUNDLE_STEPS);
-            }
 
-            if (mTwoPane) {
-                if (savedInstanceState == null) {
-                    Bundle arguments = new Bundle();
-                    arguments.putParcelable(Utils.BUNDLE_STEP, mSteps.get(0));
-                    StepDetailsFragment fragment = new StepDetailsFragment();
 
-                    fragment.setArguments(arguments);
-                    getSupportFragmentManager().beginTransaction().add(R.id.recipe_details_container, fragment).addToBackStack(null).commit();
+                if (mTwoPane) {
+                    if (savedInstanceState == null) {
 
+                        Bundle arguments = new Bundle();
+                        arguments.putParcelable(Utils.BUNDLE_STEP, mSteps.get(0));
+                        StepDetailsFragment fragment = new StepDetailsFragment();
+
+                        fragment.setArguments(arguments);
+                        getSupportFragmentManager().beginTransaction().add(R.id.recipe_details_container, fragment).addToBackStack(null).commit();
+
+                    }
                 }
             }
         }
