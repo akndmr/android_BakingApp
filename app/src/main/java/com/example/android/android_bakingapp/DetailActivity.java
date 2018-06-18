@@ -10,7 +10,7 @@ import com.example.android.android_bakingapp.utils.Utils;
 import java.util.ArrayList;
 
 
-public class DetailActivity extends AppCompatActivity implements StepsFragment.OnStepsInteractionListener, StepDetailsFragment.OnStepInteractionListener {
+public class DetailActivity extends AppCompatActivity implements StepsFragment.OnStepsInteractionListener {
     private ArrayList<Step> mSteps = new ArrayList<>();
 
     @Override
@@ -62,8 +62,5 @@ public class DetailActivity extends AppCompatActivity implements StepsFragment.O
         }
     }
 
-    @Override
-    public void onStepInteraction(Step step) {
 
-    }
 }

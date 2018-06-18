@@ -4,13 +4,13 @@
     android:id="@+id/widget_ingredients"
     android:padding="@dimen/widget_margin">
 
-
         <TextView
             android:id="@+id/widget_ingredients_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:gravity="top"
+            android:layout_margin="@dimen/default_padding"
             android:paddingBottom="@dimen/default_padding"
             android:text="@string/label_ingredients"
             android:textAlignment="center"
@@ -19,12 +19,12 @@
 
         <TextView
             android:id="@+id/widget_ingredients_tv"
+            android:layout_margin="@dimen/default_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:textColor="@android:color/white"
             android:background="@color/colorPrimary"/>
-
 
 </RelativeLayout>
 

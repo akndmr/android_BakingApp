@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -124,8 +125,8 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
                 //  Recipe mRecipe =  intent.getParcelableExtra(Utils.BUNDLE_RECIPE);
                 mIngredients = intent.getParcelableArrayListExtra(Utils.BUNDLE_INGREDIENTS);
                 mSteps = intent.getParcelableArrayListExtra(Utils.BUNDLE_STEPS);
-                //         mRecipeName = mRecipe.getRecipeName();
-                //       ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(intent.getStringExtra("recipe"));
+                mRecipeName = intent.getStringExtra("recipe_name");
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(mRecipeName);
 
                 ButterKnife.bind(getActivity());
             }

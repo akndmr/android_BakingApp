@@ -30,6 +30,7 @@
             android:id="@+id/recipe_details_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
             android:scaleType="centerInside" />
 
 

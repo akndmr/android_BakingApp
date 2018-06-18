@@ -11,7 +11,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="@dimen/exoplayer_height">
 
             <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                 android:id="@+id/playerView"
@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
-                android:contentDescription="TODO" />
+                android:contentDescription="@string/recipe_image_iv_description" />
         </FrameLayout>
 
         <LinearLayout

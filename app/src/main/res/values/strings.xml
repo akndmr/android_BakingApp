@@ -19,6 +19,7 @@
     <string name="step_s_title">Step\'s Title</string>
     <string name="noOfColumns">3</string>
     <string name="label_servings">Servings:</string>
+    <string name="recipe_image_iv_description">Image of a recipe\'s step</string>
 
 
 </resources>

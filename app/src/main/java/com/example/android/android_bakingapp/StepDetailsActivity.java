@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.android.android_bakingapp.model.Step;
 import com.example.android.android_bakingapp.utils.Utils;
 
-public class StepDetailsActivity extends AppCompatActivity implements StepDetailsFragment.OnStepInteractionListener {
+public class StepDetailsActivity extends AppCompatActivity {
     private Step mStep;
 
     @Override
@@ -25,8 +25,5 @@ public class StepDetailsActivity extends AppCompatActivity implements StepDetail
         }
     }
 
-    @Override
-    public void onStepInteraction(Step step) {
 
-    }
 }

@@ -3,4 +3,5 @@
     <dimen name="card_recipe_height">300dp</dimen>
     <dimen name="card_recipe_height_half">150dp</dimen>
     <dimen name="card_recipe_width">200dp</dimen>
+    <dimen name="exoplayer_height">250dp</dimen>
 </resources>

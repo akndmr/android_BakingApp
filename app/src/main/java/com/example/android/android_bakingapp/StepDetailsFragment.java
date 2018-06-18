@@ -67,7 +67,6 @@ public class StepDetailsFragment extends Fragment {
     private Step mStep;
     private Parcelable mSavedRecyclerLayoutState;
     private SimpleExoPlayer mExoPlayer;
-    private OnStepInteractionListener mListener;
 
     public StepDetailsFragment() {
         // Required empty public constructor
@@ -99,7 +98,7 @@ public class StepDetailsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_step_details, container, false);
@@ -114,6 +113,8 @@ public class StepDetailsFragment extends Fragment {
                 if (intent.hasExtra(Utils.BUNDLE_STEP)) {
 
                     mStep = intent.getParcelableExtra(Utils.BUNDLE_STEP);
+                } else {
+                    mStep = getArguments().getParcelable(Utils.BUNDLE_STEP);
                 }
             }
 
@@ -136,12 +137,12 @@ public class StepDetailsFragment extends Fragment {
                 // Initialize the player.
                 initializePlayer(Uri.parse(mStep.getVideoUrl()));
             } else if (!mStep.getThumbnailUrl().isEmpty()) {
-                mPlayerView.setVisibility(View.INVISIBLE);
+                mPlayerView.setVisibility(View.GONE);
                 Picasso.with(getActivity()).
                         load(mStep.getThumbnailUrl()).placeholder(R.drawable.bowl).error(R.drawable.bowl).into(mStepImageView);
                 mStepImageView.setVisibility(View.VISIBLE);
             } else {
-                mPlayerView.setVisibility(View.INVISIBLE);
+                mPlayerView.setVisibility(View.GONE);
                 mStepImageView.setVisibility(View.INVISIBLE);
             }
         }
@@ -170,6 +171,7 @@ public class StepDetailsFragment extends Fragment {
         }
     }
 
+
     /**
      * Release ExoPlayer.
      */
@@ -180,21 +182,6 @@ public class StepDetailsFragment extends Fragment {
     }
 
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnStepInteractionListener) {
-            mListener = (OnStepInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
     /**
      * Release the player when the activity is destroyed.
@@ -205,18 +192,5 @@ public class StepDetailsFragment extends Fragment {
         releasePlayer();
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnStepInteractionListener {
-        // TODO: Update argument type and name
-        void onStepInteraction(Step step);
-    }
+
 }
