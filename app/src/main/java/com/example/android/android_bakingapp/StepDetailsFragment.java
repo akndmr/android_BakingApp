@@ -64,12 +64,11 @@ public class StepDetailsFragment extends Fragment {
     ImageView mStepImageView;
     @BindView(R.id.short_desc_container)
     LinearLayout mDescContainer;
+
     @BindView(R.id.prev_button)
     Button mButtonPrev;
     @BindView(R.id.next_button)
     Button mButtonNext;
-
-
     /*    @BindView(R.id.pb_loading_indicator)
         ProgressBar mLoadingIndicator;
         @BindView(R.id.tv_error_message_display)
@@ -82,7 +81,7 @@ public class StepDetailsFragment extends Fragment {
     private SimpleExoPlayer mExoPlayer;
     //   private boolean mPlayWhenReady = false;
     private long mCurrentPosition;
-
+    private OnStepInteractionListener mListener;
     public StepDetailsFragment() {
         // Required empty public constructor
     }
@@ -148,7 +147,7 @@ public class StepDetailsFragment extends Fragment {
 
                     mStep = mSteps.get(mStep.getStepId() - 1);
                     Toast.makeText(getActivity(), "Button1 clicked." + mStep.getStepId(), Toast.LENGTH_SHORT).show();
-
+                    mListener.onStepInteraction(mStep);
 
                 } else {
                     mButtonPrev.setClickable(false);
@@ -164,6 +163,7 @@ public class StepDetailsFragment extends Fragment {
                 if (mStep.getStepId() < mSteps.size() - 1) {
                     mStep = mSteps.get(mStep.getStepId() + 1);
                     Toast.makeText(getActivity(), "Button1 clicked." + mStep.getStepId(), Toast.LENGTH_SHORT).show();
+                    mListener.onStepInteraction(mStep);
 
                 } else {
                     mButtonNext.setClickable(false);
@@ -171,8 +171,6 @@ public class StepDetailsFragment extends Fragment {
 
             }
         });
-
-
         StringTokenizer tokens = new StringTokenizer(mStep.getStepDesc(), ".");
         String stepNumber = tokens.nextToken() + ". ";
         //if there is no stepNumber aka the length of first word is more than 4 digits
@@ -268,5 +266,20 @@ public class StepDetailsFragment extends Fragment {
         }
     }
 
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnStepInteractionListener {
+
+        void onStepInteraction(Step step);
+    }
 
 }

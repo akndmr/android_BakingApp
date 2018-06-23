@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recipe_desc"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/recipe_desc_container"
     android:orientation="vertical">
 
         <FrameLayout
@@ -26,19 +26,16 @@
         </FrameLayout>
 
     <include layout="@layout/steps_description" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <Button
             android:id="@+id/prev_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="PREVIOUS STEP" />
-
         <Button
             android:id="@+id/next_button"
             android:layout_width="0dp"
