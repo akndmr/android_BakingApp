@@ -1,6 +1,5 @@
 package com.example.android.android_bakingapp;
 
-
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -97,7 +96,6 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
             mRecipes = savedInstanceState.getParcelableArrayList(BUNDLE_RECIPES);
             mSavedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
         }
-
 
         mLayoutManager = new GridLayoutManager(mContext, getResources().getInteger(R.integer.no_of_columns));
 

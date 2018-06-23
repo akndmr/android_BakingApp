@@ -128,6 +128,7 @@ public class StepDetailsFragment extends Fragment {
                     mStep = intent.getParcelableExtra(Utils.BUNDLE_STEP);
                 } else {
                     mStep = getArguments().getParcelable(Utils.BUNDLE_STEP);
+
                 }
             }
         }

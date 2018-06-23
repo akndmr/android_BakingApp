@@ -9,7 +9,6 @@ import com.example.android.android_bakingapp.utils.Utils;
 
 import java.util.ArrayList;
 
-
 public class DetailActivity extends AppCompatActivity implements StepsFragment.OnStepsInteractionListener {
     private ArrayList<Step> mSteps = new ArrayList<>();
 
@@ -34,13 +33,11 @@ public class DetailActivity extends AppCompatActivity implements StepsFragment.O
 
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction().add(R.id.recipe_details_container, fragment).addToBackStack(null).commit();
-
                     }
                 }
             }
         }
     }
-
 
     @Override
     public void onStepsInteraction(Step step) {
@@ -50,7 +47,7 @@ public class DetailActivity extends AppCompatActivity implements StepsFragment.O
 
             Intent intent = new Intent(this, StepDetailsActivity.class);
             intent.putExtra(Utils.BUNDLE_STEPS, mSteps);
-            intent.putExtra(Utils.BUNDLE_STEP, step);
+            intent.putExtra(Utils.STEP_ID, step.getStepId());
             startActivity(intent);
 
         } else {
@@ -61,6 +58,4 @@ public class DetailActivity extends AppCompatActivity implements StepsFragment.O
             getSupportFragmentManager().beginTransaction().replace(R.id.recipe_details_container, fragment).addToBackStack(null).commit();
         }
     }
-
-
 }

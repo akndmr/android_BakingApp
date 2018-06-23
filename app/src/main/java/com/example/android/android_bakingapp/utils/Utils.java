@@ -9,6 +9,7 @@ public class Utils {
     public static final String BUNDLE_RECIPE = "recipe";
     public static final String BUNDLE_STEPS = "steps";
     public static final String BUNDLE_STEP = "step";
+    public static final String STEP_ID = "step_id";
     public static final String BUNDLE_INGREDIENTS = "ingredients";
 
     public static final String STATE_RESUME_WINDOW = "resumeWindow";
@@ -17,8 +18,6 @@ public class Utils {
 
 
     public static final String RECIPE_LISTING_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/";
-    //  public final static String theMovieDbApiKey = BuildConfig.THEMOVIEDB_API_KEY;
-    public static final String YOU_TUBE_BASE_URL = "https://www.youtube.com/watch?v=";
 
     public static void getRecipeIngredients(@NonNull Context context, String recipe, String ingredients) {
         SharedPreferences prefs = context.getSharedPreferences("recipe_ingredients", Context.MODE_PRIVATE);

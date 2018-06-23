@@ -86,10 +86,8 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
         if (savedInstanceState != null) {
 
             if (savedInstanceState.containsKey(BUNDLE_RECYCLER_LAYOUT)) {
-                //      mSavedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
                 mSteps = savedInstanceState.getParcelable(Utils.BUNDLE_STEPS);
                 mIngredients = savedInstanceState.getParcelableArrayList(Utils.BUNDLE_INGREDIENTS);
-                //       mLayoutManager.onRestoreInstanceState(mSavedRecyclerLayoutState);
             }
         }
     }
@@ -104,7 +102,6 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
 
         if (savedInstanceState != null) {
             mSteps = savedInstanceState.getParcelableArrayList(Utils.BUNDLE_STEPS);
-            //          mSavedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
             mIngredients = savedInstanceState.getParcelableArrayList(Utils.BUNDLE_INGREDIENTS);
         }
 
@@ -145,7 +142,6 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
         return rootView;
     }
 
-
     @Override
     public void onAttach(Context context) {
 
@@ -156,7 +152,6 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnStepsInteractionListener");
         }
-
     }
 
     @Override
@@ -205,5 +200,4 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
 
         void onStepsInteraction(Step step);
     }
-
 }
