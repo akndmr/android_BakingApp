@@ -26,22 +26,5 @@
         </FrameLayout>
 
     <include layout="@layout/steps_description" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/prev_button"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="PREVIOUS STEP" />
-        <Button
-            android:id="@+id/next_button"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="NEXT STEP" />
 
-    </LinearLayout>
 </LinearLayout>

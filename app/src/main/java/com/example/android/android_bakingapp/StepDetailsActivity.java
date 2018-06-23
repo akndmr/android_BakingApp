@@ -3,16 +3,25 @@ package com.example.android.android_bakingapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.android.android_bakingapp.model.Step;
 import com.example.android.android_bakingapp.utils.Utils;
 
 import java.util.ArrayList;
 
-public class StepDetailsActivity extends AppCompatActivity implements StepDetailsFragment.OnStepInteractionListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class StepDetailsActivity extends AppCompatActivity {
     private Step mStep;
     private ArrayList<Step> mSteps = new ArrayList<>();
-
+    @BindView(R.id.prev_button)
+    Button mButtonPrev;
+    @BindView(R.id.next_button)
+    Button mButtonNext;
 
 
     @Override
@@ -29,21 +38,66 @@ public class StepDetailsActivity extends AppCompatActivity implements StepDetail
             if (intent.hasExtra(Utils.BUNDLE_STEPS)) {
                 mSteps = intent.getParcelableArrayListExtra(Utils.BUNDLE_STEPS);
             }
+
+            if (savedInstanceState == null) {
+                Bundle arguments = new Bundle();
+                arguments.putParcelable(Utils.BUNDLE_STEP, mStep);
+                StepDetailsFragment fragment = new StepDetailsFragment();
+
+                fragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_step_container, fragment).addToBackStack(null).commit();
+            }
         }
+
+
+        ButterKnife.bind(this);
+        mButtonPrev.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (mStep.getStepId() > 0) {
+
+                    mStep = mSteps.get(mStep.getStepId() - 1);
+                    Toast.makeText(getApplicationContext(), "Button1 clicked." + mStep.getStepId(), Toast.LENGTH_SHORT).show();
+                    getStep(mStep);
+
+
+                } else {
+                    mButtonPrev.setClickable(false);
+                }
+
+            }
+        });
+
+        mButtonNext.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (mStep.getStepId() < mSteps.size() - 1) {
+                    mStep = mSteps.get(mStep.getStepId() + 1);
+                    Toast.makeText(getApplicationContext(), "Button1 clicked." + mStep.getStepId(), Toast.LENGTH_SHORT).show();
+                    getStep(mStep);
+
+                } else {
+                    mButtonNext.setClickable(false);
+                }
+
+            }
+        });
+
     }
 
 
-    @Override
-    public void onStepInteraction(Step step) {
-        mStep = step;
+    public void getStep(Step step) {
         Bundle arguments = new Bundle();
         arguments.putParcelable(Utils.BUNDLE_STEP, step);
-        arguments.putParcelableArrayList(Utils.BUNDLE_STEPS, mSteps);
         StepDetailsFragment fragment = new StepDetailsFragment();
         fragment.setArguments(arguments);
-        getSupportFragmentManager().beginTransaction().replace(R.id.recipe_desc_container, fragment).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_step_container, fragment).addToBackStack(null).commit();
 
     }
+
+
 }
 
 

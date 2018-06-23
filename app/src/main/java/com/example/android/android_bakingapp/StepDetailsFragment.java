@@ -12,11 +12,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.android_bakingapp.model.Step;
 import com.example.android.android_bakingapp.utils.Utils;
@@ -65,10 +63,7 @@ public class StepDetailsFragment extends Fragment {
     @BindView(R.id.short_desc_container)
     LinearLayout mDescContainer;
 
-    @BindView(R.id.prev_button)
-    Button mButtonPrev;
-    @BindView(R.id.next_button)
-    Button mButtonNext;
+
     /*    @BindView(R.id.pb_loading_indicator)
         ProgressBar mLoadingIndicator;
         @BindView(R.id.tv_error_message_display)
@@ -81,7 +76,7 @@ public class StepDetailsFragment extends Fragment {
     private SimpleExoPlayer mExoPlayer;
     //   private boolean mPlayWhenReady = false;
     private long mCurrentPosition;
-    private OnStepInteractionListener mListener;
+
     public StepDetailsFragment() {
         // Required empty public constructor
     }
@@ -101,7 +96,7 @@ public class StepDetailsFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putParcelable(BUNDLE_STEP, mStep);
         outState.putLong("exoplayer_position", mCurrentPosition);
-        //   outState.putBoolean("exoplayer_ready", mPlayWhenReady);
+
     }
 
     @Override
@@ -131,7 +126,6 @@ public class StepDetailsFragment extends Fragment {
             } else {
                 if (intent.hasExtra(Utils.BUNDLE_STEP)) {
                     mStep = intent.getParcelableExtra(Utils.BUNDLE_STEP);
-                    mSteps = intent.getParcelableArrayListExtra(Utils.BUNDLE_STEPS);
                 } else {
                     mStep = getArguments().getParcelable(Utils.BUNDLE_STEP);
                 }
@@ -139,38 +133,7 @@ public class StepDetailsFragment extends Fragment {
         }
         ButterKnife.bind(this, rootView);
 
-        mButtonPrev.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (mStep.getStepId() > 0) {
-
-                    mStep = mSteps.get(mStep.getStepId() - 1);
-                    Toast.makeText(getActivity(), "Button1 clicked." + mStep.getStepId(), Toast.LENGTH_SHORT).show();
-                    mListener.onStepInteraction(mStep);
-
-                } else {
-                    mButtonPrev.setClickable(false);
-                }
-
-            }
-        });
-
-        mButtonNext.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (mStep.getStepId() < mSteps.size() - 1) {
-                    mStep = mSteps.get(mStep.getStepId() + 1);
-                    Toast.makeText(getActivity(), "Button1 clicked." + mStep.getStepId(), Toast.LENGTH_SHORT).show();
-                    mListener.onStepInteraction(mStep);
-
-                } else {
-                    mButtonNext.setClickable(false);
-                }
-
-            }
-        });
         StringTokenizer tokens = new StringTokenizer(mStep.getStepDesc(), ".");
         String stepNumber = tokens.nextToken() + ". ";
         //if there is no stepNumber aka the length of first word is more than 4 digits
@@ -267,19 +230,5 @@ public class StepDetailsFragment extends Fragment {
     }
 
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnStepInteractionListener {
-
-        void onStepInteraction(Step step);
-    }
 
 }
