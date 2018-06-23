@@ -95,6 +95,11 @@ public class StepDetailsActivity extends AppCompatActivity {
         fragment.setArguments(arguments);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_step_container, fragment).addToBackStack(null).commit();
 
+        Intent intent = new Intent(getApplicationContext(), StepDetailsActivity.class);
+        intent.putExtra(Utils.BUNDLE_STEPS, mSteps);
+        intent.putExtra(Utils.BUNDLE_STEP, step);
+        startActivity(intent);
+
     }
 
 
