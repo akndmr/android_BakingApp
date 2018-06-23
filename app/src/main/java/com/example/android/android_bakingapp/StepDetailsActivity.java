@@ -2,6 +2,7 @@ package com.example.android.android_bakingapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,8 @@ public class StepDetailsActivity extends AppCompatActivity {
             if (intent.hasExtra(Utils.BUNDLE_STEPS)) {
                 mSteps = intent.getParcelableArrayListExtra(Utils.BUNDLE_STEPS);
                 mIndex = intent.getIntExtra(Utils.STEP_ID, 0);
+                String mRecipeName = intent.getStringExtra(Utils.RECIPE_NAME);
+                getSupportActionBar().setTitle(mRecipeName);
             }
             if (savedInstanceState == null) {
                 Bundle arguments = new Bundle();
@@ -42,6 +45,8 @@ public class StepDetailsActivity extends AppCompatActivity {
 
                 fragment.setArguments(arguments);
                 getSupportFragmentManager().beginTransaction().add(R.id.fragment_step_container, fragment).addToBackStack(null).commit();
+            } else {
+                mIndex = savedInstanceState.getInt(Utils.STEP_ID);
             }
         }
 
@@ -71,6 +76,22 @@ public class StepDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(Utils.STEP_ID, mIndex);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(Utils.STEP_ID)) {
+                mIndex = savedInstanceState.getInt(Utils.STEP_ID);
+            }
+        }
     }
 
     public void getStep(Step step) {

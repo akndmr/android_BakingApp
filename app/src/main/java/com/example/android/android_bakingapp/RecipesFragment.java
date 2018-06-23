@@ -19,6 +19,7 @@ import com.example.android.android_bakingapp.adapter.RecipesAdapter;
 import com.example.android.android_bakingapp.model.Recipe;
 import com.example.android.android_bakingapp.rest.ApiClient;
 import com.example.android.android_bakingapp.rest.ApiInterface;
+import com.example.android.android_bakingapp.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,6 @@ import retrofit2.Response;
 public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesAdapterOnClickHandler {
     private static final String TAG = RecipesFragment.class.getSimpleName();
     private static final String BUNDLE_RECYCLER_LAYOUT = "recycler.layout";
-    private static final String BUNDLE_RECIPES = "recipes";
 
     @BindView(R.id.recipes_rv)
     RecyclerView mRecyclerView;
@@ -45,8 +45,6 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
     private ArrayList<Recipe> mRecipes;
     private RecipesAdapter mRecipesAdapter;
     private Parcelable mSavedRecyclerLayoutState;
-
-
     private OnRecipeInteractionListener mListener;
     private GridLayoutManager mLayoutManager;
 
@@ -54,21 +52,17 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
-
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        // outState.putParcelableArrayList(BUNDLE_RECIPES, mRecipes);
         outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, mRecyclerView.getLayoutManager().onSaveInstanceState());
-        outState.putParcelableArrayList(BUNDLE_RECIPES, mRecipes);
-
+        outState.putParcelableArrayList(Utils.BUNDLE_RECIPES, mRecipes);
     }
 
     @Override
@@ -76,8 +70,10 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
         super.onViewStateRestored(savedInstanceState);
 
         if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(Utils.BUNDLE_RECIPES)) {
+                mRecipes = savedInstanceState.getParcelableArrayList(Utils.BUNDLE_RECIPES);
+            }
             if (savedInstanceState.containsKey(BUNDLE_RECYCLER_LAYOUT)) {
-                mRecipes = savedInstanceState.getParcelableArrayList(BUNDLE_RECIPES);
                 mSavedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
                 mLayoutManager.onRestoreInstanceState(mSavedRecyclerLayoutState);
             }
@@ -93,7 +89,7 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
         mRecipesAdapter = new RecipesAdapter(mContext, this);
 
         if (savedInstanceState != null) {
-            mRecipes = savedInstanceState.getParcelableArrayList(BUNDLE_RECIPES);
+            mRecipes = savedInstanceState.getParcelableArrayList(Utils.BUNDLE_RECIPES);
             mSavedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
         }
 
@@ -140,7 +136,6 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
                     } else {
                         showErrorMessage();
                     }
-
                 }
 
                 @Override
@@ -163,7 +158,6 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
 
     @Override
     public void onAttach(Context context) {
-
         super.onAttach(context);
 
         try {
@@ -171,7 +165,6 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnRecipeInteractionListener");
         }
-
     }
 
     @Override
@@ -187,7 +180,6 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
-
     private void showErrorMessage() {
         /* First, hide the currently visible data */
         mRecyclerView.setVisibility(View.INVISIBLE);
@@ -198,16 +190,7 @@ public class RecipesFragment extends Fragment implements RecipesAdapter.RecipesA
     @Override
     public void onClick(Recipe recipe) {
         mListener.onRecipeInteraction(recipe);
-      /*  Intent intent = new Intent(mContext, DetailActivity.class);
-        intent.putExtra("recipe", recipe.getRecipeName());
-        intent.putParcelableArrayListExtra("ingredients", recipe.getIngredients());
-        intent.putParcelableArrayListExtra("steps", recipe.getSteps());
-
-        mContext.startActivity(intent);
-*/
-
     }
-
 
     /**
      * This interface must be implemented by activities that contain this

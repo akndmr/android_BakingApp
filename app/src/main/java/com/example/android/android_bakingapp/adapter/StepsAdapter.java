@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.android_bakingapp.R;
-import com.example.android.android_bakingapp.StepsFragment;
 import com.example.android.android_bakingapp.model.Step;
 
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     private final StepsAdapterOnClickHandler mClickHandler;
     private final Context mContext;
     private List<Step> mSteps = new ArrayList<>();
-
 
     public StepsAdapter(Context context, StepsAdapterOnClickHandler clickHandler) {
         mContext = context;
@@ -37,7 +35,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         view.setFocusable(true);
         return new StepsViewHolder(view, mClickHandler);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull StepsViewHolder holder, int position) {
@@ -63,7 +60,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         notifyDataSetChanged();
     }
 
-
     /**
      * The interface that receives onClick messages.
      */
@@ -81,7 +77,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
 
             super(view);
             mClickHandler = clickHandler;
-
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
         }
@@ -90,7 +85,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
             mClickHandler.onClick(mSteps.get(adapterPosition));
-
         }
     }
 }

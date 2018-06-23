@@ -11,7 +11,6 @@ public interface ApiInterface {
 
     @GET("baking.json")
     Call<List<Recipe>> getRecipes();
-
 }
 
 

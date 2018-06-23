@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/card_step_height"
-    android:background="@color/stepsBackground"
+    android:background="@color/colorStepsBackground"
     android:minHeight="@dimen/card_step_height">
 
     <TextView
@@ -24,6 +24,6 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="16dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/desc_of_arrow_right_white"
         android:src="@drawable/baseline_keyboard_arrow_right_white_24" />
 </RelativeLayout>

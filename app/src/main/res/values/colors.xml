@@ -3,5 +3,5 @@
     <color name="colorPrimary">#f1333f</color>
     <color name="colorPrimaryDark">#ae283f</color>
     <color name="colorAccent">#e0e0e0</color>
-    <color name="stepsBackground">#ffc000</color>
+    <color name="colorStepsBackground">#ffc000</color>
 </resources>

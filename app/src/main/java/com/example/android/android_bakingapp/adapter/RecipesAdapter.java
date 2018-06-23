@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.android_bakingapp.R;
-import com.example.android.android_bakingapp.RecipesFragment;
 import com.example.android.android_bakingapp.model.Recipe;
 
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
     private final RecipesAdapterOnClickHandler mClickHandler;
     private final Context mContext;
     private List<Recipe> mRecipes = new ArrayList<>();
-
 
     public RecipesAdapter(Context context, RecipesAdapterOnClickHandler clickHandler) {
         mContext = context;
@@ -46,8 +44,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
 
         holder.mRecipeTextView.setText(recipe.getRecipeName());
         holder.mServingsTextView.setText(String.valueOf(recipe.getServings()));
-
-
     }
 
     @Override
@@ -66,7 +62,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
         mRecipes = recipesData;
         notifyDataSetChanged();
     }
-
 
     /**
      * The interface that receives onClick messages.
@@ -87,7 +82,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
 
             super(view);
             mClickHandler = clickHandler;
-            // mReviews = reviews;
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
         }
@@ -96,7 +90,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
             mClickHandler.onClick(mRecipes.get(adapterPosition));
-
         }
     }
 }

@@ -1,30 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/widget_ingredients"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
     android:padding="@dimen/widget_margin">
 
         <TextView
             android:id="@+id/widget_ingredients_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:gravity="top"
-            android:layout_margin="@dimen/default_padding"
-            android:paddingBottom="@dimen/default_padding"
-            android:text="@string/label_ingredients"
+            android:layout_marginTop="@dimen/default_padding"
+            android:text="@string/label_recipe"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorStepsBackground" />
 
         <TextView
             android:id="@+id/widget_ingredients_tv"
             android:layout_margin="@dimen/default_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:textColor="@android:color/white"
-            android:background="@color/colorPrimary"/>
+            android:textColor="@color/colorAccent" />
 
-</RelativeLayout>
-
+</LinearLayout>

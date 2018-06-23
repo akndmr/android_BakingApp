@@ -1,11 +1,8 @@
 package com.example.android.android_bakingapp;
 
-
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -33,7 +30,6 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import butterknife.BindView;
@@ -42,13 +38,8 @@ import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link StepDetailsFragment.OnStepInteractionListener} interface
- * to handle interaction events.
- */
+ **/
 public class StepDetailsFragment extends Fragment {
-
-    private static final String BUNDLE_STEP = "step";
 
     @BindView(R.id.step_number)
     TextView mStepNumberTV;
@@ -63,40 +54,24 @@ public class StepDetailsFragment extends Fragment {
     @BindView(R.id.short_desc_container)
     LinearLayout mDescContainer;
 
-
-    /*    @BindView(R.id.pb_loading_indicator)
-        ProgressBar mLoadingIndicator;
-        @BindView(R.id.tv_error_message_display)
-        TextView mErrorMessageDisplay;
-    */
-    private Context mContext;
     private Step mStep;
-    private ArrayList<Step> mSteps;
-    private Parcelable mSavedRecyclerLayoutState;
     private SimpleExoPlayer mExoPlayer;
-    //   private boolean mPlayWhenReady = false;
     private long mCurrentPosition;
 
     public StepDetailsFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        mContext = getContext();
-
-
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(BUNDLE_STEP, mStep);
+        outState.putParcelable(Utils.BUNDLE_STEP, mStep);
         outState.putLong("exoplayer_position", mCurrentPosition);
-
     }
 
     @Override
@@ -105,8 +80,8 @@ public class StepDetailsFragment extends Fragment {
 
         if (savedInstanceState != null) {
             mCurrentPosition = savedInstanceState.getLong("exoplayer_position");
-            if (savedInstanceState.containsKey(BUNDLE_STEP)) {
-                mStep = savedInstanceState.getParcelable(BUNDLE_STEP);
+            if (savedInstanceState.containsKey(Utils.BUNDLE_STEP)) {
+                mStep = savedInstanceState.getParcelable(Utils.BUNDLE_STEP);
             }
         }
     }
@@ -117,27 +92,24 @@ public class StepDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_step_details, container, false);
 
-
         Intent intent = getActivity().getIntent();
 
         if (intent != null) {
-            if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_STEP)) {
-                mStep = savedInstanceState.getParcelable(BUNDLE_STEP);
+            if (savedInstanceState != null && savedInstanceState.containsKey(Utils.BUNDLE_STEP)) {
+                mStep = savedInstanceState.getParcelable(Utils.BUNDLE_STEP);
             } else {
                 if (intent.hasExtra(Utils.BUNDLE_STEP)) {
                     mStep = intent.getParcelableExtra(Utils.BUNDLE_STEP);
                 } else {
                     mStep = getArguments().getParcelable(Utils.BUNDLE_STEP);
-
                 }
             }
         }
         ButterKnife.bind(this, rootView);
 
-
         StringTokenizer tokens = new StringTokenizer(mStep.getStepDesc(), ".");
         String stepNumber = tokens.nextToken() + ". ";
-        //if there is no stepNumber aka the length of first word is more than 4 digits
+        //if there is no stepNumber aka the length of first word is more than 4 digits, then leave blank
         if (stepNumber.length() > 4) {
             stepNumber = " ";
         }
@@ -150,17 +122,19 @@ public class StepDetailsFragment extends Fragment {
             mStepImageView.setVisibility(View.INVISIBLE);
             // Initialize the player.
             initializePlayer(Uri.parse(mStep.getVideoUrl()));
+            mPlayerView.setVisibility(View.VISIBLE);
         } else if (!mStep.getThumbnailUrl().isEmpty()) {
             mPlayerView.setVisibility(View.INVISIBLE);
             Picasso.with(getActivity()).
                     load(mStep.getThumbnailUrl()).placeholder(R.drawable.bowl).error(R.drawable.bowl).into(mStepImageView);
             mStepImageView.setVisibility(View.VISIBLE);
+        } else {
+            mPlayerView.setVisibility(View.INVISIBLE);
+            mStepImageView.setImageResource(R.drawable.bowl);
+            mStepImageView.setVisibility(View.VISIBLE);
         }
-
-
         return rootView;
     }
-
 
     /**
      * Initialize ExoPlayer.
@@ -179,7 +153,6 @@ public class StepDetailsFragment extends Fragment {
             String userAgent = Util.getUserAgent(getActivity().getBaseContext(), getString(R.string.app_name));
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getActivity(), userAgent), new DefaultExtractorsFactory(), null, null);
 
-
             if (mCurrentPosition != C.TIME_UNSET) {
                 mExoPlayer.seekTo(mCurrentPosition);
             }
@@ -195,7 +168,6 @@ public class StepDetailsFragment extends Fragment {
         if (mExoPlayer != null) {
             mExoPlayer.seekTo(0, mCurrentPosition);
         }
-
     }
 
     /**
@@ -213,7 +185,6 @@ public class StepDetailsFragment extends Fragment {
         if (mExoPlayer != null) {
             mCurrentPosition = mExoPlayer.getCurrentPosition();
             releasePlayer();
-
         }
     }
 
@@ -226,10 +197,6 @@ public class StepDetailsFragment extends Fragment {
         if (mExoPlayer != null) {
             mCurrentPosition = mExoPlayer.getCurrentPosition();
             releasePlayer();
-
         }
     }
-
-
-
 }

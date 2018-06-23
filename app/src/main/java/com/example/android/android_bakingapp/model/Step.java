@@ -59,7 +59,6 @@ public class Step implements Parcelable {
         out.writeString(mThumbnailUrl);
     }
 
-
     public int getStepId() {
         return mStepId;
     }
@@ -79,5 +78,4 @@ public class Step implements Parcelable {
     public String getThumbnailUrl() {
         return mThumbnailUrl;
     }
-
 }

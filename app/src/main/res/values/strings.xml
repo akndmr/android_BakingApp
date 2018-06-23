@@ -18,9 +18,15 @@
     <string name="recipe_s_description">Recipe\'s description</string>
     <string name="step_s_title">Step\'s Title</string>
     <string name="noOfColumns">3</string>
+    <string name="label_recipe">Recipe</string>
     <string name="label_servings">Servings:</string>
     <string name="recipe_image_iv_description">Image of a recipe\'s step</string>
     <string name="recipe_number">1.</string>
+    <string name="desc_of_arrow_right_white">Arrow right white</string>
+    <string name="servings_label">Servings:</string>
+    <string name="prev_step_label">PREVIOUS STEP</string>
+    <string name="next_step_label">NEXT STEP</string>
+    <string name="number_one_step_label">1.</string>
 
 
 </resources>

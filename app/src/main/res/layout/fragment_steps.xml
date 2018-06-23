@@ -62,9 +62,8 @@
                 android:clipToPadding="false"
                 android:paddingBottom="0dp"
                 android:paddingTop="@dimen/default_padding_small" />
-
-
         </RelativeLayout>
+
         <!-- A progress bar that will be shown to users to indicate that movies data are loading -->
         <TextView
             android:id="@+id/tv_error_message_display"
@@ -82,4 +81,5 @@
             android:layout_gravity="center"
             android:visibility="invisible" />
     </FrameLayout>
+
 </ScrollView>

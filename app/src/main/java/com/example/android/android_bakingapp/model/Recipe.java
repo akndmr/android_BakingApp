@@ -82,7 +82,6 @@ public class Recipe implements Parcelable {
         return mSteps;
     }
 
-
     public int getServings() {
         return mServings;
     }

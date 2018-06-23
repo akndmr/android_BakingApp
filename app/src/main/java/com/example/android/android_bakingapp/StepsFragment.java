@@ -3,7 +3,6 @@ package com.example.android.android_bakingapp;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -57,7 +56,6 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
     private StepsAdapter mStepsAdapter;
     private Parcelable mSavedRecyclerLayoutState;
 
-    private LinearLayoutManager mLayoutManager;
     private OnStepsInteractionListener mListener;
 
     public StepsFragment() {
@@ -66,7 +64,6 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         mContext = getActivity();
     }
@@ -105,7 +102,7 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
             mIngredients = savedInstanceState.getParcelableArrayList(Utils.BUNDLE_INGREDIENTS);
         }
 
-        mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
 
         /* Association of the LayoutManager with the RecyclerView */
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -119,10 +116,9 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
 
         if (intent != null) {
             if (intent.hasExtra(Utils.BUNDLE_STEPS)) {
-                //  Recipe mRecipe =  intent.getParcelableExtra(Utils.BUNDLE_RECIPE);
                 mIngredients = intent.getParcelableArrayListExtra(Utils.BUNDLE_INGREDIENTS);
                 mSteps = intent.getParcelableArrayListExtra(Utils.BUNDLE_STEPS);
-                mRecipeName = intent.getStringExtra("recipe_name");
+                mRecipeName = intent.getStringExtra(Utils.RECIPE_NAME);
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(mRecipeName);
 
                 ButterKnife.bind(getActivity());
@@ -132,7 +128,6 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
         String ingredientsList = ingredientsToString();
         mIngredientsTV.setText(ingredientsList);
         shareRecipeIngredients(ingredientsList);
-        //    mRecipeWidgetTV.setText(ingredientsList);
         Log.v(TAG, "INGREDIENTS = " + ingredientsList);
         mStepsAdapter.setData(mSteps);
 
@@ -179,10 +174,6 @@ public class StepsFragment extends Fragment implements StepsAdapter.StepsAdapter
 
     private void shareRecipeIngredients(String ingredients) {
 
-        SharedPreferences.Editor editor = getActivity().getSharedPreferences("recipe", Context.MODE_PRIVATE).edit();
-        editor.putString("name", mRecipeName);
-        editor.putString("ingredients", ingredients);
-        editor.apply();
         IngredientsDisplayService.startActionDisplayRecipe(getActivity(), mRecipeName, ingredients);
     }
 

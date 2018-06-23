@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity implements RecipesFragment.O
     @Override
     public void onRecipeInteraction(Recipe recipe) {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("recipe_name", recipe.getRecipeName());
-        intent.putExtra("recipe_id", recipe.getRecipeId());
+        intent.putExtra(Utils.RECIPE_NAME, recipe.getRecipeName());
         intent.putParcelableArrayListExtra(Utils.BUNDLE_INGREDIENTS, recipe.getIngredients());
         intent.putParcelableArrayListExtra(Utils.BUNDLE_STEPS, recipe.getSteps());
 
