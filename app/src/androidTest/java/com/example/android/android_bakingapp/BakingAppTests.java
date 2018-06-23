@@ -17,8 +17,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class BakingAppTests {
 
-    public static final String STEP_NAME = "Starting prep";
-
     /**
      * The ActivityTestRule is a rule provided by Android used for functional testing of a single
      * activity. The activity that will be tested will be launched before each test that's annotated
