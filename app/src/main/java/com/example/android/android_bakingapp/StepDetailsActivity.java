@@ -10,6 +10,7 @@ import com.example.android.android_bakingapp.utils.Utils;
 public class StepDetailsActivity extends AppCompatActivity {
     private Step mStep;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,10 +21,13 @@ public class StepDetailsActivity extends AppCompatActivity {
         if (intent != null) {
             if (intent.hasExtra(Utils.BUNDLE_STEP)) {
                 mStep = intent.getParcelableExtra(Utils.BUNDLE_STEP);
-
             }
         }
+
+
     }
 
 
 }
+
+

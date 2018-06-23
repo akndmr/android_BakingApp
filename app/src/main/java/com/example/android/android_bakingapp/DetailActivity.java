@@ -25,7 +25,6 @@ public class DetailActivity extends AppCompatActivity implements StepsFragment.O
             if (intent.hasExtra(Utils.BUNDLE_STEPS)) {
                 mSteps = intent.getParcelableArrayListExtra(Utils.BUNDLE_STEPS);
 
-
                 if (mTwoPane) {
                     if (savedInstanceState == null) {
 
@@ -50,6 +49,7 @@ public class DetailActivity extends AppCompatActivity implements StepsFragment.O
         if (!mTwoPane) {
 
             Intent intent = new Intent(this, StepDetailsActivity.class);
+            intent.putExtra(Utils.BUNDLE_STEPS, mSteps);
             intent.putExtra(Utils.BUNDLE_STEP, step);
             startActivity(intent);
 

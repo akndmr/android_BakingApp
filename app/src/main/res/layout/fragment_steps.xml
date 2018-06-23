@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:descendantFocusability="blocksDescendants"
-            android:paddingTop="@dimen/default_padding">
+            android:paddingTop="@dimen/default_padding_small">
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/ingredients_cv"
@@ -30,7 +30,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="@dimen/default_padding">
+                    android:paddingEnd="@dimen/default_padding"
+                    android:paddingStart="@dimen/default_padding">
 
                     <TextView
                         android:id="@+id/ingredients_label"
@@ -59,8 +60,8 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/ingredients_cv"
                 android:clipToPadding="false"
-                android:paddingBottom="@dimen/default_padding_small"
-                android:paddingTop="@dimen/default_padding" />
+                android:paddingBottom="0dp"
+                android:paddingTop="@dimen/default_padding_small" />
 
 
         </RelativeLayout>

@@ -11,6 +11,10 @@ public class Utils {
     public static final String BUNDLE_STEP = "step";
     public static final String BUNDLE_INGREDIENTS = "ingredients";
 
+    public static final String STATE_RESUME_WINDOW = "resumeWindow";
+    public static final String STATE_RESUME_POSITION = "resumePosition";
+    public static final String STATE_PLAYER_FULLSCREEN = "playerFullscreen";
+
 
     public static final String RECIPE_LISTING_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/";
     //  public final static String theMovieDbApiKey = BuildConfig.THEMOVIEDB_API_KEY;

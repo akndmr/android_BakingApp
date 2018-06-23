@@ -20,6 +20,7 @@
     <string name="noOfColumns">3</string>
     <string name="label_servings">Servings:</string>
     <string name="recipe_image_iv_description">Image of a recipe\'s step</string>
+    <string name="recipe_number">1.</string>
 
 
 </resources>
