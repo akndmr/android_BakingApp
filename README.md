@@ -21,8 +21,9 @@ And some sample mocks are located here: https://d17h27t6h515a5.cloudfront.net/to
 
 
 <h2> App's screenshots</h2>
-<p><img src="screenshots/baking_app_1.png" width="33%"/>   <img src="screenshots/baking_app_2.png" width="33%"/></p>
-<p><img src="screenshots/baking_app_3.png" width="33%"/>   <img src="screenshots/baking_app_5.png" width="33%"/></p>
-<p><img src="screenshots/baking_app_4.png" width="60%"/>   </p>
-<p><img src="screenshots/baking_app_6.png" width="60%"/> </p>
-<p><img src="screenshots/baking_app_7.png" width="60%"/> </p>
+<p><img src="screenshots/baking_app_1.png" width="30%"/>   <img src="screenshots/baking_app_2.png" width="30%"/></p>
+<p><img src="screenshots/baking_app_3.png" width="30%"/>   <img src="screenshots/baking_app_5.png" width="30%"/></p>
+<p><img src="screenshots/baking_app_4.png" width="50%"/>   </p>
+<p><img src="screenshots/baking_app_8.png" width="70%"/> </p>
+<p><img src="screenshots/baking_app_6.png" width="70%"/> </p>
+<p><img src="screenshots/baking_app_7.png" width="70%"/> </p>
