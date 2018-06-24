@@ -17,3 +17,12 @@ Through this project I learnt to:
 The recipe listing (the JSON file which contains the recipes' instructions, ingredients, videos and images) is located here: https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json.
 
 And some sample mocks are located here: https://d17h27t6h515a5.cloudfront.net/topher/2017/March/58dee986_bakingapp-mocks/bakingapp-mocks.pdf
+
+
+
+<h2> App's screenshots</h2>
+<p><img src="screenshots/baking_app_1.png" width="33%"/>   <img src="screenshots/baking_apps_2.png" width="33%"/></p>
+<p><img src="screenshots/baking_app_3.png" width="33%"/>   <img src="screenshots/baking_app_4.png" width="33%"/></p>
+<p><img src="screenshots/baking_app_5.png" width="60%"/>   </p>
+<p><img src="screenshots/baking_app_6.png" width="60%"/> </p>
+<p><img src="screenshots/baking_app_7.png" width="60%"/> </p>
