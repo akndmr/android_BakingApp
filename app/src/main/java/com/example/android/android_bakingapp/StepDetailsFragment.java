@@ -123,8 +123,6 @@ public class StepDetailsFragment extends Fragment {
 
         if (!mStep.getVideoUrl().isEmpty()) {
             mStepImageView.setVisibility(View.INVISIBLE);
-            // Initialize the player.
-            initializePlayer(Uri.parse(mStep.getVideoUrl()));
             mPlayerView.setVisibility(View.VISIBLE);
         } else if (!mStep.getThumbnailUrl().isEmpty()) {
             mPlayerView.setVisibility(View.INVISIBLE);
@@ -162,17 +160,62 @@ public class StepDetailsFragment extends Fragment {
 
             mExoPlayer.prepare(mediaSource);
             mExoPlayer.setPlayWhenReady(mExoPlayerState);
-            mCurrentPosition = mExoPlayer.getCurrentPosition();
-            mExoPlayerState = mExoPlayer.getPlayWhenReady();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!mStep.getVideoUrl().isEmpty()) {
+            if (Util.SDK_INT > 23) {
+                initializePlayer(Uri.parse(mStep.getVideoUrl()));
+            }
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        if (!mStep.getVideoUrl().isEmpty()) {
+            if ((Util.SDK_INT <= 23 || mExoPlayer == null)) {
+                initializePlayer(Uri.parse(mStep.getVideoUrl()));
+            }
+        }
+
         if (mExoPlayer != null) {
-            mExoPlayer.seekTo(0, mCurrentPosition);
+            mExoPlayer.seekTo(mCurrentPosition);
             mExoPlayer.setPlayWhenReady(mExoPlayerState);
+        }
+    }
+
+    /**
+     * Keep position and state and release the player when the activity is paused.
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (mExoPlayer != null) {
+            mCurrentPosition = mExoPlayer.getCurrentPosition();
+            mExoPlayerState = mExoPlayer.getPlayWhenReady();
+            if (Util.SDK_INT <= 23) {
+                releasePlayer();
+            }
+        }
+    }
+
+    /**
+     * Release the player when the activity is stopped.
+     */
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if (mExoPlayer != null) {
+            if (Util.SDK_INT > 23) {
+                releasePlayer();
+            }
         }
     }
 
@@ -183,28 +226,5 @@ public class StepDetailsFragment extends Fragment {
         mExoPlayer.stop();
         mExoPlayer.release();
         mExoPlayer = null;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mExoPlayer != null) {
-            mCurrentPosition = mExoPlayer.getCurrentPosition();
-            mExoPlayerState = mExoPlayer.getPlayWhenReady();
-            releasePlayer();
-        }
-    }
-
-    /**
-     * Release the player when the activity is destroyed.
-     */
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mExoPlayer != null) {
-            mCurrentPosition = mExoPlayer.getCurrentPosition();
-            mExoPlayerState = mExoPlayer.getPlayWhenReady();
-            releasePlayer();
-        }
     }
 }
