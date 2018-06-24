@@ -19,6 +19,8 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="widget_margin">0dp</dimen>
     <dimen name="exoplayer_height">230dp</dimen>
     <dimen name="card_view_text_container">200dp</dimen>
+    <dimen name="arrow_right_width">24dp</dimen>
+    <dimen name="card_view_text_container_height">44dp</dimen>
 
 
 </resources>

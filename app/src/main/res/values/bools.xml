@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="align_to_parent_end">true</bool>
+    <bool name="align_to_parent_start">true</bool>
+    <bool name="align_to_parent_bottom">true</bool>
+    <bool name="align_to_parent_top">true</bool>
+    <bool name="center_vertical">true</bool>
+</resources>

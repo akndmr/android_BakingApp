@@ -56,6 +56,7 @@ public class StepDetailsFragment extends Fragment {
 
     private Step mStep;
     private SimpleExoPlayer mExoPlayer;
+    private boolean mExoPlayerState = true;
     private long mCurrentPosition;
 
     public StepDetailsFragment() {
@@ -72,6 +73,7 @@ public class StepDetailsFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putParcelable(Utils.BUNDLE_STEP, mStep);
         outState.putLong("exoplayer_position", mCurrentPosition);
+        outState.putBoolean("exoplayer_state", mExoPlayerState);
     }
 
     @Override
@@ -80,6 +82,7 @@ public class StepDetailsFragment extends Fragment {
 
         if (savedInstanceState != null) {
             mCurrentPosition = savedInstanceState.getLong("exoplayer_position");
+            mExoPlayerState = savedInstanceState.getBoolean("exoplayer_state");
             if (savedInstanceState.containsKey(Utils.BUNDLE_STEP)) {
                 mStep = savedInstanceState.getParcelable(Utils.BUNDLE_STEP);
             }
@@ -156,9 +159,11 @@ public class StepDetailsFragment extends Fragment {
             if (mCurrentPosition != C.TIME_UNSET) {
                 mExoPlayer.seekTo(mCurrentPosition);
             }
+
             mExoPlayer.prepare(mediaSource);
-            mExoPlayer.setPlayWhenReady(true);
+            mExoPlayer.setPlayWhenReady(mExoPlayerState);
             mCurrentPosition = mExoPlayer.getCurrentPosition();
+            mExoPlayerState = mExoPlayer.getPlayWhenReady();
         }
     }
 
@@ -167,6 +172,7 @@ public class StepDetailsFragment extends Fragment {
         super.onResume();
         if (mExoPlayer != null) {
             mExoPlayer.seekTo(0, mCurrentPosition);
+            mExoPlayer.setPlayWhenReady(mExoPlayerState);
         }
     }
 
@@ -184,6 +190,7 @@ public class StepDetailsFragment extends Fragment {
         super.onPause();
         if (mExoPlayer != null) {
             mCurrentPosition = mExoPlayer.getCurrentPosition();
+            mExoPlayerState = mExoPlayer.getPlayWhenReady();
             releasePlayer();
         }
     }
@@ -196,6 +203,7 @@ public class StepDetailsFragment extends Fragment {
         super.onDestroy();
         if (mExoPlayer != null) {
             mCurrentPosition = mExoPlayer.getCurrentPosition();
+            mExoPlayerState = mExoPlayer.getPlayWhenReady();
             releasePlayer();
         }
     }
